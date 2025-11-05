@@ -77,7 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
   tools.forEach((tool) => {
     // Security: Use DOM methods instead of innerHTML to prevent XSS
     const toolCard = document.createElement("a");
-    toolCard.href = sanitizeURL(tool.path);
+
+    // Remove /page-apps prefix if on production domain
+    let path = tool.path;
+    if (
+      window.location.hostname === "aryascripts.com" &&
+      path.startsWith("/page-apps")
+    ) {
+      path = path.replace("/page-apps", "");
+    }
+
+    toolCard.href = sanitizeURL(path);
     toolCard.className = "tool-card";
 
     const card = document.createElement("div");
