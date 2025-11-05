@@ -78,16 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Security: Use DOM methods instead of innerHTML to prevent XSS
     const toolCard = document.createElement("a");
 
-    // Remove /page-apps prefix if on production domain
-    let path = tool.path;
+    const path = tool.path;
     if (
-      window.location.hostname === "aryascripts.com" &&
+      window.location.hostname.endsWith("aryascripts.com") &&
       path.startsWith("/page-apps")
     ) {
-      path = path.replace("/page-apps", "");
+      toolCard.href = sanitizeURL(path.replace("/page-apps", ""));
+    } else {
+      toolCard.href = sanitizeURL(path);
     }
 
-    toolCard.href = sanitizeURL(path);
     toolCard.className = "tool-card";
 
     const card = document.createElement("div");
