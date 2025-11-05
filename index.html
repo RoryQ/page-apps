@@ -9,6 +9,37 @@
     />
     <meta name="theme-color" content="#667eea" />
 
+    <!-- Redirect from GitHub Pages to Netlify -->
+    <script>
+      // Redirect from GitHub Pages (aryascripts.github.io/page-apps) to Netlify (tools.aryascripts.com)
+      if (
+        window.location.hostname === "aryascripts.github.io" ||
+        window.location.hostname.endsWith(".github.io")
+      ) {
+        const targetDomain = "https://tools.aryascripts.com";
+        const currentPath = window.location.pathname;
+
+        // Remove /page-apps prefix if present
+        let newPath = currentPath;
+        if (currentPath.startsWith("/page-apps")) {
+          newPath = currentPath.replace(/^\/page-apps/, "");
+        }
+
+        // Ensure path starts with /
+        if (!newPath.startsWith("/")) {
+          newPath = "/" + newPath;
+        }
+
+        // Redirect to Netlify domain
+        const redirectUrl =
+          targetDomain +
+          newPath +
+          window.location.search +
+          window.location.hash;
+        window.location.replace(redirectUrl);
+      }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script
       async

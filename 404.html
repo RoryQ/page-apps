@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages 404.html redirect handler
+      // Redirects from aryascripts.github.io/page-apps/* to tools.aryascripts.com/*
+
+      (function () {
+        const targetDomain = "https://tools.aryascripts.com";
+        const currentPath = window.location.pathname;
+
+        // Remove /page-apps prefix if present
+        let newPath = currentPath;
+        if (currentPath.startsWith("/page-apps")) {
+          newPath = currentPath.replace(/^\/page-apps/, "");
+        }
+
+        // Ensure path starts with /
+        if (!newPath.startsWith("/")) {
+          newPath = "/" + newPath;
+        }
+
+        // Redirect to Netlify domain
+        const redirectUrl =
+          targetDomain +
+          newPath +
+          window.location.search +
+          window.location.hash;
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=https://tools.aryascripts.com" />
+    <link rel="canonical" href="https://tools.aryascripts.com" />
+  </head>
+  <body>
+    <p>
+      Redirecting to
+      <a href="https://tools.aryascripts.com">tools.aryascripts.com</a>...
+    </p>
+  </body>
+</html>
